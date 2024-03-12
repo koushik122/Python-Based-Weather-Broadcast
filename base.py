@@ -9,7 +9,7 @@ def search():
 root = Tk()
 
 # Geometry (Width x Height)
-root.geometry("760x450")
+root.geometry("760x500")
 root.title("Weather App")
 
 # Disallow resizing
