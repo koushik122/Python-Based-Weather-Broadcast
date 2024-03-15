@@ -3,7 +3,8 @@ from PIL import Image, ImageTk
 
 
 def search():
-    print("Search button clicked!")
+    city=city_name.get()
+    print("Search button clicked!\nThe city is", city)
 
 
 root = Tk()
@@ -32,6 +33,13 @@ resized_search_icon_image = search_icon_image.resize((35,35))
 search_icon_photo = ImageTk.PhotoImage(resized_search_icon_image)
 Button(root, image=search_icon_photo, command=search, bg="#000000", bd=0, highlightthickness=0
 ).place(x=480, y=82)
+
+
+# Variable for storing city
+city_name = StringVar()
+
+Entry(root, textvariable=city_name,bg="#000000",bd=0,fg="#ffffff",width=16,justify=CENTER,
+       cursor='xterm',insertbackground='white',font=('Arial 18 bold')).place(x=267,y=85)
 
 
 
