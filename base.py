@@ -29,10 +29,10 @@ Label(root, image=search_bar_photo, bg="#47ceff", highlightthickness=0).place(x=
 
 # Search icon image
 search_icon_image = Image.open("App icon resources/Search icon.png")
-resized_search_icon_image = search_icon_image.resize((35,35))
+resized_search_icon_image = search_icon_image.resize((40,40))
 search_icon_photo = ImageTk.PhotoImage(resized_search_icon_image)
 Button(root, image=search_icon_photo, command=search, bg="#000000", bd=0, highlightthickness=0
-).place(x=480, y=82)
+).place(x=480, y=80)
 
 
 # Variable for storing city
