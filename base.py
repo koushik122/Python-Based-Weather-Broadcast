@@ -1,13 +1,14 @@
 from tkinter import *
 from PIL import Image, ImageTk
+import customtkinter as ctk
 
 
 def search():
-    city=city_name.get()
+    city=entry.get()
     print("Search button clicked!\nThe city is", city)
 
 
-root = Tk()
+root =ctk.CTk()
 
 # Geometry (Width x Height)
 root.geometry("760x500")
@@ -20,26 +21,19 @@ root.resizable(width=False, height=False)
 root.config(bg="#47ceff")
 
 
-# Search Bar image
-search_bar_image = Image.open("App icon resources/Search Bar.png")
-# (Width x Height)
-resized_search_bar_image = search_bar_image.resize((300, 130))
-search_bar_photo = ImageTk.PhotoImage(resized_search_bar_image)
-Label(root, image=search_bar_photo, bg="#47ceff", highlightthickness=0).place(x=235, y=34)
+# Search Bar Entry
+entry = ctk.CTkEntry(root,width=366,height=55, corner_radius=30, 
+                     placeholder_text="Enter City Name", font=('Arial', 27),
+                       bg_color="#47ceff", fg_color="#000", justify=CENTER)
+entry.place(x=200,y=60)
 
 # Search icon image
-search_icon_image = Image.open("App icon resources/Search icon.png")
-resized_search_icon_image = search_icon_image.resize((40,40))
-search_icon_photo = ImageTk.PhotoImage(resized_search_icon_image)
-Button(root, image=search_icon_photo, command=search, bg="#000000", bd=0, highlightthickness=0
-).place(x=480, y=80)
-
-
-# Variable for storing city
-city_name = StringVar()
-
-Entry(root, textvariable=city_name,bg="#000000",bd=0,fg="#ffffff",width=16,justify=CENTER,
-       cursor='xterm',insertbackground='white',font=('Arial 18 bold')).place(x=267,y=85)
+search_icon_image = ctk.CTkImage(dark_image=Image.open("App icon resources/Search_icon.png"),size=(35, 35))
+button = ctk.CTkButton(root, image=search_icon_image,text="",
+                       width=33,corner_radius=90,height=55,
+                        fg_color="#000",bg_color="#47ceff",
+                         command=search)
+button.place(x=570,y=60)
 
 
 
