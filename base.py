@@ -1,11 +1,21 @@
 from tkinter import *
 from PIL import Image, ImageTk
 import customtkinter as ctk
+import requests
+import cred
 
 
 def search():
-    city=entry.get()
-    print("Search button clicked!\nThe city is", city)
+  city=entry.get()    
+  url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={cred.api_key}"
+  res=requests.get(url)
+  response=res.json()
+  if res.status_code>=200 and res.status_code<=299:
+    icon= (response['weather'][0]['icon'])
+    icon_name=f"{icon}@2x.png"
+    icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(150, 150))
+    icon_lable.configure(image=icon_image)
+
 
 
 root =ctk.CTk()
@@ -57,28 +67,28 @@ Pressure_variable = ctk.StringVar()
 Visibility_variable = ctk.StringVar()
 
 
-label1 = ctk.CTkLabel(canvas, textvariable=Humidity_variable, fg_color="black", text_color="white")
-label1.place(x=90,y=20)
+t_label1 = ctk.CTkLabel(canvas, textvariable=Humidity_variable, fg_color="black", text_color="white")
+t_label1.place(x=90,y=20)
 
-label1 = ctk.CTkLabel(canvas, textvariable=Wind_Speed_variable, fg_color="black", text_color="white")
-label1.place(x=90,y=50)
+t_label2 = ctk.CTkLabel(canvas, textvariable=Wind_Speed_variable, fg_color="black", text_color="white")
+t_label2.place(x=90,y=50)
 
-label1 = ctk.CTkLabel(canvas, textvariable=AQI_variable, fg_color="black", text_color="white")
-label1.place(x=90,y=80)
+t_label3 = ctk.CTkLabel(canvas, textvariable=AQI_variable, fg_color="black", text_color="white")
+t_label3.place(x=90,y=80)
 
-label1 = ctk.CTkLabel(canvas, textvariable=Pressure_variable, fg_color="black", text_color="white")
-label1.place(x=90,y=110)
+t_label4 = ctk.CTkLabel(canvas, textvariable=Pressure_variable, fg_color="black", text_color="white")
+t_label4.place(x=90,y=110)
 
-label1 = ctk.CTkLabel(canvas, textvariable=Visibility_variable, fg_color="black", text_color="white")
-label1.place(x=90,y=140)
+t_label5 = ctk.CTkLabel(canvas, textvariable=Visibility_variable, fg_color="black", text_color="white")
+t_label5.place(x=90,y=140)
 
 
 
 
 
 #icon label
-label1 = ctk.CTkLabel(root, text="Humidity:", fg_color="black", text_color="white")
-label1.place(x=500,y=200)
+icon_lable = ctk.CTkLabel(root,text="", bg_color='#47ceff')
+icon_lable.place(x=500,y=200)
 
 
 
