@@ -34,7 +34,7 @@ root.config(bg="#47ceff")
 # Search Bar Entry
 entry = ctk.CTkEntry(root,width=366,height=55, corner_radius=30, 
                      placeholder_text="Enter City Name", font=('Arial', 27),
-                       bg_color="#47ceff", fg_color="#000", justify=CENTER)
+                       bg_color="#47ceff", fg_color="#000",text_color='#fff', justify=CENTER)
 entry.place(x=200,y=60)
 
 # Search icon image
