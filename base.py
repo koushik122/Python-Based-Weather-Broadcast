@@ -2,10 +2,14 @@ from tkinter import *
 import tkinter.messagebox
 from PIL import Image, ImageTk
 import customtkinter as ctk
+from timezonefinder import TimezoneFinder 
+import datetime
+import pytz
 import requests
 import cred
 
 
+obj = TimezoneFinder()
 def search():
   city=entry.get()
   url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={cred.api_key}"
@@ -16,6 +20,16 @@ def search():
     icon_name=f"{icon}@2x.png"
     icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(150, 150))
     icon_lable.configure(image=icon_image)
+
+    lng=response['coord']['lon']
+    lat=response['coord']['lat']
+    timezone=obj.timezone_at(lng=lng, lat=lat)
+    utc_now = datetime.datetime.now()
+    timezone = pytz.timezone(timezone)
+    local_now = utc_now.astimezone(timezone)
+    time = local_now.strftime("%I:%M %p")
+    
+    time_lable.configure(text=time)
   else:
     tkinter.messagebox.showwarning("No Result",  "-Enter valid city name\n-Check your internet connection")
 
@@ -93,6 +107,9 @@ icon_lable = ctk.CTkLabel(root,text="", bg_color='#47ceff')
 icon_lable.place(x=500,y=200)
 
 
+# Time date lable
+time_lable = ctk.CTkLabel(root,text="",text_color='#fff', bg_color='#47ceff', font=('Arial', 27))
+time_lable.place(x=5,y=3)
 
 
 root.mainloop()
