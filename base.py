@@ -48,19 +48,19 @@ button = ctk.CTkButton(root, image=search_icon_image,text="",
 button.place(x=570,y=60)
 
 #Weather Detail 
-canvas=Canvas(root,bg="black",highlightbackground="black",height=180,width=200)
+canvas=Canvas(root,bg="black",highlightbackground="black",height=210,width=200)
 canvas.pack(side='left',padx=10)
 
 label1 = ctk.CTkLabel(canvas, text="Humidity:", fg_color="black", text_color="white")
-label1.place(x=10,y=20)
+label1.place(x=10,y=12)
 label2 = ctk.CTkLabel(canvas, text="Wind Speed:", fg_color="black", text_color="white")
-label2.place(x=10,y=50)
+label2.place(x=10,y=42)
 label3 = ctk.CTkLabel(canvas, text="AQI:", fg_color="black", text_color="white")
-label3.place(x=10,y=80)
+label3.place(x=10,y=72)
 label4 = ctk.CTkLabel(canvas, text="Pressure:", fg_color="black", text_color="white")
-label4.place(x=10,y=110)
+label4.place(x=10,y=102)
 label5 = ctk.CTkLabel(canvas, text="Visibility:", fg_color="black", text_color="white")
-label5.place(x=10,y=140)
+label5.place(x=10,y=132)
 
 Humidity_variable = ctk.StringVar()
 Wind_Speed_variable = ctk.StringVar()
@@ -70,19 +70,19 @@ Visibility_variable = ctk.StringVar()
 
 
 t_label1 = ctk.CTkLabel(canvas, textvariable=Humidity_variable, fg_color="black", text_color="white")
-t_label1.place(x=90,y=20)
+t_label1.place(x=90,y=12)
 
 t_label2 = ctk.CTkLabel(canvas, textvariable=Wind_Speed_variable, fg_color="black", text_color="white")
-t_label2.place(x=90,y=50)
+t_label2.place(x=90,y=42)
 
 t_label3 = ctk.CTkLabel(canvas, textvariable=AQI_variable, fg_color="black", text_color="white")
-t_label3.place(x=90,y=80)
+t_label3.place(x=90,y=72)
 
 t_label4 = ctk.CTkLabel(canvas, textvariable=Pressure_variable, fg_color="black", text_color="white")
-t_label4.place(x=90,y=110)
+t_label4.place(x=90,y=102)
 
 t_label5 = ctk.CTkLabel(canvas, textvariable=Visibility_variable, fg_color="black", text_color="white")
-t_label5.place(x=90,y=140)
+t_label5.place(x=90,y=132)
 
 
 
