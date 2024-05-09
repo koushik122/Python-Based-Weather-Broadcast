@@ -28,8 +28,10 @@ def search():
     timezone = pytz.timezone(timezone)
     local_now = utc_now.astimezone(timezone)
     time = local_now.strftime("%I:%M %p")
+    date = local_now.strftime("%a, %d %b")
     
     time_lable.configure(text=time)
+    date_lable.configure(text=date)
   else:
     tkinter.messagebox.showwarning("No Result",  "-Enter valid city name\n-Check your internet connection")
 
@@ -50,7 +52,7 @@ root.config(bg="#47ceff")
 # Search Bar Entry
 entry = ctk.CTkEntry(root,width=366,height=55, corner_radius=30, 
                      placeholder_text="Enter City Name", font=('Arial', 27),
-                       bg_color="#47ceff", fg_color="#000", justify=CENTER)
+                       bg_color="#47ceff", fg_color="#000",text_color='#fff', justify=CENTER)
 entry.place(x=200,y=60)
 
 # Search icon image
@@ -108,8 +110,10 @@ icon_lable.place(x=500,y=200)
 
 
 # Time date lable
-time_lable = ctk.CTkLabel(root,text="",text_color='#fff', bg_color='#47ceff', font=('Arial', 27))
+time_lable = ctk.CTkLabel(root,text="",text_color='#262e94', bg_color='#47ceff', font=('Arial', 25))
 time_lable.place(x=5,y=3)
 
+date_lable = ctk.CTkLabel(root,text="",text_color='#262e94', bg_color='#47ceff', font=('Arial', 25))
+date_lable.place(x=5,y=28)
 
 root.mainloop()
