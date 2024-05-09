@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter.messagebox
 from PIL import Image, ImageTk
 import customtkinter as ctk
 import requests
@@ -6,7 +7,7 @@ import cred
 
 
 def search():
-  city=entry.get()    
+  city=entry.get()
   url=f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={cred.api_key}"
   res=requests.get(url)
   response=res.json()
@@ -15,7 +16,8 @@ def search():
     icon_name=f"{icon}@2x.png"
     icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(150, 150))
     icon_lable.configure(image=icon_image)
-
+  else:
+    tkinter.messagebox.showwarning("No Result",  "-Enter valid city name\n-Check your internet connection")
 
 
 root =ctk.CTk()
@@ -34,7 +36,7 @@ root.config(bg="#47ceff")
 # Search Bar Entry
 entry = ctk.CTkEntry(root,width=366,height=55, corner_radius=30, 
                      placeholder_text="Enter City Name", font=('Arial', 27),
-                       bg_color="#47ceff", fg_color="#000",text_color='#fff', justify=CENTER)
+                       bg_color="#47ceff", fg_color="#000", justify=CENTER)
 entry.place(x=200,y=60)
 
 # Search icon image
