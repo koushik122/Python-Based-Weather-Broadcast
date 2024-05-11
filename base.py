@@ -32,6 +32,36 @@ def search():
     
     time_lable.configure(text=time)
     date_lable.configure(text=date)
+
+#weather deta call#
+    aqi_url=f"http://api.openweathermap.org/data/2.5/air_pollution?lat={lng}&lon={lat}&appid={cred.api_key}"
+    aqi_response=requests.get(aqi_url).json()
+    humi= f"{(response['main']['humidity'])}%"
+    wind= f"{(response['wind']['speed'])} m/s"
+    aqi= str(aqi_response['list'][0]['main']['aqi'])
+    pre=f"{(response['main']['pressure'])} hPa"
+    vis=f"{str(int(response['visibility'])/1000)} km"
+
+    Humidity_variable.set(humi)
+    Wind_Speed_variable.set(wind)
+    
+    Pressure_variable.set(pre)
+    Visibility_variable.set(vis)
+    match aqi:
+      case "1":
+        AQI_variable.set("Good")
+      case "2":
+        AQI_variable.set("Fair")
+      case "3":
+        AQI_variable.set("Moderate")
+      case "4":
+        AQI_variable.set("Poor")
+      case "5":
+        AQI_variable.set("Very Poor")
+      case _:
+        AQI_variable.set("No value")  
+
+
   else:
     tkinter.messagebox.showwarning("No Result",  "-Enter valid city name\n-Check your internet connection")
 
@@ -100,8 +130,8 @@ t_label4.place(x=90,y=102)
 t_label5 = ctk.CTkLabel(canvas, textvariable=Visibility_variable, fg_color="black", text_color="white")
 t_label5.place(x=90,y=132)
 
-
-
+t_label1 = ctk.CTkLabel(canvas, textvariable=Humidity_variable, fg_color="black", text_color="white")
+t_label1.place(x=90,y=12)
 
 
 #icon label
