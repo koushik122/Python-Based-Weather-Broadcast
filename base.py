@@ -33,7 +33,16 @@ def search():
     time_lable.configure(text=time)
     date_lable.configure(text=date)
 
-#weather deta call#
+    temp=f"{str(round(float(response['main']['temp'])))}°C"
+    tempareture.set(temp)
+
+    feels_like_temp=f"Feels Like {str(round(float(response['main']['feels_like'])))}°C"
+    fl_temp.set(feels_like_temp)
+
+    description = (response['weather'][0]['description'])
+    icon_lable_variable.set(description.title())
+
+# Weather deta call
     aqi_url=f"http://api.openweathermap.org/data/2.5/air_pollution?lat={lng}&lon={lat}&appid={cred.api_key}"
     aqi_response=requests.get(aqi_url).json()
     humi= f"{(response['main']['humidity'])}%"
@@ -93,10 +102,11 @@ button = ctk.CTkButton(root, image=search_icon_image,text="",
                          command=search)
 button.place(x=570,y=60)
 
-#Weather Detail 
+# Weather Detail 
 canvas=Canvas(root,bg="black",highlightbackground="black",height=210,width=200)
 canvas.pack(side='left',padx=10)
 
+# Weather details lables
 label1 = ctk.CTkLabel(canvas, text="Humidity:", fg_color="black", text_color="white")
 label1.place(x=10,y=12)
 label2 = ctk.CTkLabel(canvas, text="Wind Speed:", fg_color="black", text_color="white")
@@ -114,7 +124,7 @@ AQI_variable = ctk.StringVar()
 Pressure_variable = ctk.StringVar()
 Visibility_variable = ctk.StringVar()
 
-
+# Weather details value lables
 t_label1 = ctk.CTkLabel(canvas, textvariable=Humidity_variable, fg_color="black", text_color="white")
 t_label1.place(x=90,y=12)
 
@@ -134,9 +144,24 @@ t_label1 = ctk.CTkLabel(canvas, textvariable=Humidity_variable, fg_color="black"
 t_label1.place(x=90,y=12)
 
 
-#icon label
+# Tempareture lable
+tempareture = ctk.StringVar()
+temp_lable = ctk.CTkLabel(root,textvariable=tempareture, bg_color='#47ceff', font=('Arial', 45))
+temp_lable.place(x=330,y=200)
+
+fl_temp = ctk.StringVar()
+fl_temp_lable = ctk.CTkLabel(root,textvariable=fl_temp, bg_color='#47ceff', font=('Arial', 23))
+fl_temp_lable.place(x=300,y=250)
+
+
+# Icon label
 icon_lable = ctk.CTkLabel(root,text="", bg_color='#47ceff')
-icon_lable.place(x=500,y=200)
+icon_lable.place(x=500,y=160)
+
+# Icon lable description
+icon_lable_variable = ctk.StringVar()
+icon_lable_description = ctk.CTkLabel(root,textvariable=icon_lable_variable,width=230, bg_color='#47ceff',justify= "center", font=('Arial', 24, 'bold'))
+icon_lable_description.place(x=467,y=290)
 
 
 # Time date lable
