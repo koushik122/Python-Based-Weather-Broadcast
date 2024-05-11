@@ -146,11 +146,11 @@ t_label1.place(x=90,y=12)
 
 # Tempareture lable
 tempareture = ctk.StringVar()
-temp_lable = ctk.CTkLabel(root,textvariable=tempareture, bg_color='#47ceff', font=('Arial', 45))
+temp_lable = ctk.CTkLabel(root,textvariable=tempareture, bg_color='#47ceff',text_color='#fff', font=('Arial', 45))
 temp_lable.place(x=330,y=200)
 
 fl_temp = ctk.StringVar()
-fl_temp_lable = ctk.CTkLabel(root,textvariable=fl_temp, bg_color='#47ceff', font=('Arial', 23))
+fl_temp_lable = ctk.CTkLabel(root,textvariable=fl_temp, bg_color='#47ceff',text_color='#fff', font=('Arial', 23))
 fl_temp_lable.place(x=300,y=250)
 
 
@@ -160,7 +160,7 @@ icon_lable.place(x=500,y=160)
 
 # Icon lable description
 icon_lable_variable = ctk.StringVar()
-icon_lable_description = ctk.CTkLabel(root,textvariable=icon_lable_variable,width=230, bg_color='#47ceff',justify= "center", font=('Arial', 24, 'bold'))
+icon_lable_description = ctk.CTkLabel(root,textvariable=icon_lable_variable,width=230, bg_color='#47ceff',text_color='#fff',justify= "center", font=('Arial', 24, 'bold'))
 icon_lable_description.place(x=467,y=290)
 
 
