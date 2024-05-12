@@ -74,6 +74,8 @@ def search():
   else:
     tkinter.messagebox.showwarning("No Result",  "-Enter valid city name\n-Check your internet connection")
 
+def on_click(event):
+  search()
 
 root =ctk.CTk()
 
@@ -93,6 +95,7 @@ entry = ctk.CTkEntry(root,width=366,height=55, corner_radius=30,
                      placeholder_text="Enter City Name", font=('Arial', 27),
                        bg_color="#47ceff", fg_color="#000",text_color='#fff', justify=CENTER)
 entry.place(x=200,y=60)
+entry.bind('<Return>', on_click)
 
 # Search icon image
 search_icon_image = ctk.CTkImage(dark_image=Image.open("App icon resources/Search_icon.png"),size=(35, 35))
@@ -104,7 +107,7 @@ button.place(x=570,y=60)
 
 # Weather Detail 
 canvas=Canvas(root,bg="black",highlightbackground="black",height=210,width=200)
-canvas.pack(side='left',padx=10)
+canvas.place(x=10,y=200)
 
 # Weather details lables
 label1 = ctk.CTkLabel(canvas, text="Humidity:", fg_color="black", text_color="white")
