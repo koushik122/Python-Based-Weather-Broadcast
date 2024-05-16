@@ -198,27 +198,129 @@ def today():
 def day_1():
   clear(Canvas)
   target_date=first_date
+  weather_updates_count = 8
+  
+  x_value, y_value = 20,20
+  for item in forecast_response['list']:
+    date = item['dt_txt'].split(' ')[0]
+    if date == target_date:
+        time = item['dt_txt'].split(' ')[1]
+        weather_f_des_str=(item['weather'][0]['description'])
+        tempareture_str=f"{str(round(float(item['main']['temp'])))}°C"
+        time_str=convert_time_to_12hr_format(time)
+        combi_text=f"{(weather_f_des_str.title())}\n{tempareture_str}\n\n{time_str}"
+        icon = (item['weather'][0]['icon'])
+        icon_name=f"{icon}@2x.png"
+        icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(50,50))
+        forecast_lables=ctk.CTkLabel(Canvas,width=100,image=icon_image,text=combi_text,bg_color="green",compound="top")
+        forecast_lables.place(x = x_value,y = y_value)
+        labels.append(forecast_lables)
+        x_value+=120
+
+  make_rectangle(weather_updates_count)
+ 
 
 
 def day_2():
   clear(Canvas)
   target_date=second_date
+  weather_updates_count = 8
+  
+  x_value, y_value = 20,20
+  for item in forecast_response['list']:
+    date = item['dt_txt'].split(' ')[0]
+    if date == target_date:
+        time = item['dt_txt'].split(' ')[1]
+        weather_f_des_str=(item['weather'][0]['description'])
+        tempareture_str=f"{str(round(float(item['main']['temp'])))}°C"
+        time_str=convert_time_to_12hr_format(time)
+        combi_text=f"{(weather_f_des_str.title())}\n{tempareture_str}\n\n{time_str}"
+        icon = (item['weather'][0]['icon'])
+        icon_name=f"{icon}@2x.png"
+        icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(50,50))
+        forecast_lables=ctk.CTkLabel(Canvas,width=100,image=icon_image,text=combi_text,bg_color="green",compound="top")
+        forecast_lables.place(x = x_value,y = y_value)
+        labels.append(forecast_lables)
+        x_value+=120
 
+  make_rectangle(weather_updates_count)
+ 
 
 def day_3():
   clear(Canvas)
   target_date=third_date
+  weather_updates_count = 8
+  
+  x_value, y_value = 20,20
+  for item in forecast_response['list']:
+    date = item['dt_txt'].split(' ')[0]
+    if date == target_date:
+        time = item['dt_txt'].split(' ')[1]
+        weather_f_des_str=(item['weather'][0]['description'])
+        tempareture_str=f"{str(round(float(item['main']['temp'])))}°C"
+        time_str=convert_time_to_12hr_format(time)
+        combi_text=f"{(weather_f_des_str.title())}\n{tempareture_str}\n\n{time_str}"
+        icon = (item['weather'][0]['icon'])
+        icon_name=f"{icon}@2x.png"
+        icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(50,50))
+        forecast_lables=ctk.CTkLabel(Canvas,width=100,image=icon_image,text=combi_text,bg_color="green",compound="top")
+        forecast_lables.place(x = x_value,y = y_value)
+        labels.append(forecast_lables)
+        x_value+=120
 
+  make_rectangle(weather_updates_count)
+ 
 
 def day_4():
   clear(Canvas)
   target_date=forth_date
+  weather_updates_count = 8
+  
+  x_value, y_value = 20,20
+  for item in forecast_response['list']:
+    date = item['dt_txt'].split(' ')[0]
+    if date == target_date:
+        time = item['dt_txt'].split(' ')[1]
+        weather_f_des_str=(item['weather'][0]['description'])
+        tempareture_str=f"{str(round(float(item['main']['temp'])))}°C"
+        time_str=convert_time_to_12hr_format(time)
+        combi_text=f"{(weather_f_des_str.title())}\n{tempareture_str}\n\n{time_str}"
+        icon = (item['weather'][0]['icon'])
+        icon_name=f"{icon}@2x.png"
+        icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(50,50))
+        forecast_lables=ctk.CTkLabel(Canvas,width=100,image=icon_image,text=combi_text,bg_color="green",compound="top")
+        forecast_lables.place(x = x_value,y = y_value)
+        labels.append(forecast_lables)
+        x_value+=120
 
+  make_rectangle(weather_updates_count)
+ 
 
 def day_5():
   clear(Canvas)
   target_date=fifth_date
+  weather_updates_count = 0
+  
+  x_value, y_value = 20,20
+  for item in forecast_response['list']:
+    date = item['dt_txt'].split(' ')[0]
+    if date == target_date:
+        weather_updates_count += 1
+        time = item['dt_txt'].split(' ')[1]
+        weather_f_des_str=(item['weather'][0]['description'])
+        tempareture_str=f"{str(round(float(item['main']['temp'])))}°C"
+        time_str=convert_time_to_12hr_format(time)
+        combi_text=f"{(weather_f_des_str.title())}\n{tempareture_str}\n\n{time_str}"
+        icon = (item['weather'][0]['icon'])
+        icon_name=f"{icon}@2x.png"
+        icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(50,50))
+        forecast_lables=ctk.CTkLabel(Canvas,width=100,image=icon_image,text=combi_text,bg_color="green",compound="top")
+        forecast_lables.place(x = x_value,y = y_value)
+        labels.append(forecast_lables)
+        x_value+=120
 
+  make_rectangle(weather_updates_count)
+ 
 
 root = ctk.CTk()
 
