@@ -171,7 +171,7 @@ def clear(Canvas):
 
 def today():
   clear(Canvas)
-  target_date=today_date
+  target_date = today_date
   weather_updates_count = 0
   
   x_value, y_value = 20,20
@@ -187,10 +187,10 @@ def today():
         icon = (item['weather'][0]['icon'])
         icon_name=f"{icon}@2x.png"
         icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(50,50))
-        forecast_lables=ctk.CTkLabel(Canvas,width=100,image=icon_image,text=combi_text,bg_color="green",compound="top")
+        forecast_lables=ctk.CTkLabel(Canvas,width=100,image=icon_image,text=combi_text,text_color="white",bg_color="green",compound="top")
         forecast_lables.place(x = x_value,y = y_value)
         labels.append(forecast_lables)
-        x_value+=120
+        x_value += 120
 
   make_rectangle(weather_updates_count)
  
