@@ -7,7 +7,7 @@ import datetime
 import pytz
 import requests
 import cred
-
+import detailed_desc
 
 obj = TimezoneFinder()
 
@@ -27,7 +27,7 @@ def search():
 
     icon = (response['weather'][0]['icon'])
     icon_name=f"{icon}@2x.png"
-    icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(150, 150))
+    icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(140, 140))
     icon_lable.configure(image=icon_image)
 
     time = local_now.strftime("%I:%M %p")
@@ -45,6 +45,12 @@ def search():
 
     description = (response['weather'][0]['description'])
     icon_lable_variable.set(description.title())
+
+    details = int(response['weather'][0]['id'])
+    detailed = detailed_desc.id_to_weather[details]
+    id_lable_text = f"Detailed Description :\n{detailed.title()}"
+    id_lable.configure(text=id_lable_text)
+
 
 # AQI API call
     aqi_url=f"http://api.openweathermap.org/data/2.5/air_pollution?lat={latitude}&lon={longitude}&appid={cred.api_key}"
@@ -107,6 +113,31 @@ def round_rectangle(x1, y1, x2, y2, radius=25, **kwargs):
 
     return canvas.create_polygon(points, **kwargs, smooth=True)
 
+def round_rectangle_forecast(x1, y1, x2, y2, radius=25, **kwargs):
+        
+    points = [x1+radius, y1,
+              x1+radius, y1,
+              x2-radius, y1,
+              x2-radius, y1,
+              x2, y1,
+              x2, y1+radius,
+              x2, y1+radius,
+              x2, y2-radius,
+              x2, y2-radius,
+              x2, y2,
+              x2-radius, y2,
+              x2-radius, y2,
+              x1+radius, y2,
+              x1+radius, y2,
+              x1, y2,
+              x1, y2-radius,
+              x1, y2-radius,
+              x1, y1+radius,
+              x1, y1+radius,
+              x1, y1]
+
+    return Canvas.create_polygon(points, **kwargs, smooth=True)
+
 def on_press(event):
   search()
 
@@ -159,7 +190,7 @@ def convert_time_to_12hr_format(time_str):
 def make_rectangle(weather_count):
   left, top, rignt, bottom = 20,20,150,180
   for i in range(weather_count):
-    Canvas.create_rectangle((left, top, rignt, bottom), fill='green')
+    round_rectangle_forecast(left, top, rignt, bottom, fill='green')
     left+=150
     rignt+=150
 
@@ -218,7 +249,6 @@ def day_1():
         x_value+=120
 
   make_rectangle(weather_updates_count)
- 
 
 
 def day_2():
@@ -395,34 +425,37 @@ t_label5.place(x=90,y=132)
 # Tempareture lable
 tempareture = ctk.StringVar()
 temp_lable = ctk.CTkLabel(root,textvariable=tempareture, bg_color='#47ceff',text_color='#fff', font=('Arial', 45))
-temp_lable.place(x=330,y=200)
+temp_lable.place(x=320,y=200)
 
 fl_temp = ctk.StringVar()
 fl_temp_lable = ctk.CTkLabel(root,textvariable=fl_temp, bg_color='#47ceff',text_color='#fff', font=('Arial', 23))
-fl_temp_lable.place(x=300,y=250)
+fl_temp_lable.place(x=290,y=250)
 
 
 # Icon label
 icon_lable = ctk.CTkLabel(root,text="",bg_color='#47ceff')
-icon_lable.place(x=500,y=160)
+icon_lable.place(x=510,y=160)
 
 # Icon lable description
 icon_lable_variable = ctk.StringVar()
-icon_lable_description = ctk.CTkLabel(root,textvariable=icon_lable_variable,width=230, bg_color='#47ceff',text_color='#fff',justify= "center", font=('Arial', 24, 'bold'))
-icon_lable_description.place(x=467,y=290)
+icon_lable_description = ctk.CTkLabel(root,textvariable=icon_lable_variable,width=250, bg_color='#47ceff',text_color='#fff',justify= "center", font=('Arial', 24))
+icon_lable_description.place(x=460,y=280)
 
+# Detailed weather description lable
+id_lable = ctk.CTkLabel(root,text="",width=230, bg_color='#47ceff',text_color='#fff',justify= "center", font=('Arial', 20))
+id_lable.place(x=700,y=200)
 
 # Time date lable
 time_lable = ctk.CTkLabel(root,text="",text_color='#262e94', bg_color='#47ceff', font=('Arial', 25))
-time_lable.place(x=5,y=3)
+time_lable.place(x=7,y=3)
 
 date_lable = ctk.CTkLabel(root,text="",text_color='#262e94', bg_color='#47ceff', font=('Arial', 25))
-date_lable.place(x=5,y=28)
+date_lable.place(x=7,y=28)
 
 # Timezone lable
 timezone_variable = ctk.StringVar()
 timezone_lable = ctk.CTkLabel(root, textvariable=timezone_variable, text_color='#262e94', bg_color='#47ceff', font=('Arial', 25))
-timezone_lable.place(x=800,y=10)
+timezone_lable.place(x=790,y=10)
 
 
 # Canvas for weather forecast
@@ -432,8 +465,6 @@ Canvas.pack(expand=True, anchor='sw', fill=X)
 
 # To store labels for forecast
 labels=[]
-
-
 
 today_button=ctk.CTkButton(root,width=80, text="Today",bg_color="#47ceff",corner_radius=5, font=('Arial', 16), command = today)
 today_button.place(x=50,y=350)
@@ -452,8 +483,6 @@ day_4_button.place(x=660,y=350)
 
 day_5_button=ctk.CTkButton(root,width=100, text="Day 5",bg_color="#47ceff",corner_radius=5, font=('Arial', 16),command=day_5)
 day_5_button.place(x=820,y=350)
-
-
 
 
 root.mainloop()
