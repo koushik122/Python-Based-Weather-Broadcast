@@ -205,7 +205,7 @@ def today():
   target_date = today_date
   weather_updates_count = 0
   
-  x_value, y_value = 20,20
+  x_value, y_value = 19,20
   for item in forecast_response['list']:
     date = item['dt_txt'].split(' ')[0]
     if date == target_date:
@@ -231,7 +231,7 @@ def day_1():
   target_date=first_date
   weather_updates_count = 8
   
-  x_value, y_value = 20,20
+  x_value, y_value = 19,20
   for item in forecast_response['list']:
     date = item['dt_txt'].split(' ')[0]
     if date == target_date:
@@ -256,7 +256,7 @@ def day_2():
   target_date=second_date
   weather_updates_count = 8
   
-  x_value, y_value = 20,20
+  x_value, y_value = 19,20
   for item in forecast_response['list']:
     date = item['dt_txt'].split(' ')[0]
     if date == target_date:
@@ -281,7 +281,7 @@ def day_3():
   target_date=third_date
   weather_updates_count = 8
   
-  x_value, y_value = 20,20
+  x_value, y_value = 19,20
   for item in forecast_response['list']:
     date = item['dt_txt'].split(' ')[0]
     if date == target_date:
@@ -306,7 +306,7 @@ def day_4():
   target_date=forth_date
   weather_updates_count = 8
   
-  x_value, y_value = 20,20
+  x_value, y_value = 19,20
   for item in forecast_response['list']:
     date = item['dt_txt'].split(' ')[0]
     if date == target_date:
@@ -331,7 +331,7 @@ def day_5():
   target_date=fifth_date
   weather_updates_count = 0
   
-  x_value, y_value = 20,20
+  x_value, y_value = 19,20
   for item in forecast_response['list']:
     date = item['dt_txt'].split(' ')[0]
     if date == target_date:
