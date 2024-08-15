@@ -27,7 +27,7 @@ def search():
 
     icon = (response['weather'][0]['icon'])
     icon_name=f"{icon}@2x.png"
-    icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(140, 140))
+    icon_image=ctk.CTkImage(light_image=Image.open(f"Weather Condition Icons/{icon_name}"),size=(120, 120))
     icon_lable.configure(image=icon_image)
 
     time = local_now.strftime("%I:%M %p")
@@ -188,11 +188,11 @@ def convert_time_to_12hr_format(time_str):
   return time_obj.strftime("%I %p").lstrip('0')
 
 def make_rectangle(weather_count):
-  left, top, rignt, bottom = 20,20,150,180
+  left, top, rignt, bottom = 15,15,120,145
   for i in range(weather_count):
     round_rectangle_forecast(left, top, rignt, bottom, fill='green')
-    left+=150
-    rignt+=150
+    left+=120
+    rignt+=120
 
 def clear(Canvas):
   Canvas.delete("all")
@@ -212,6 +212,8 @@ def today():
         weather_updates_count += 1
         time = item['dt_txt'].split(' ')[1]
         weather_f_des_str=(item['weather'][0]['description'])
+        if weather_f_des_str == "heavy intensity rain":
+          weather_f_des_str="heavy rain"
         tempareture_str=f"{str(round(float(item['main']['temp'])))}°C"
         time_str=convert_time_to_12hr_format(time)
         combi_text=f"{(weather_f_des_str.title())}\n{tempareture_str}\n\n{time_str}"
@@ -237,6 +239,8 @@ def day_1():
     if date == target_date:
         time = item['dt_txt'].split(' ')[1]
         weather_f_des_str=(item['weather'][0]['description'])
+        if weather_f_des_str == "heavy intensity rain":
+          weather_f_des_str="heavy rain"
         tempareture_str=f"{str(round(float(item['main']['temp'])))}°C"
         time_str=convert_time_to_12hr_format(time)
         combi_text=f"{(weather_f_des_str.title())}\n{tempareture_str}\n\n{time_str}"
@@ -262,6 +266,8 @@ def day_2():
     if date == target_date:
         time = item['dt_txt'].split(' ')[1]
         weather_f_des_str=(item['weather'][0]['description'])
+        if weather_f_des_str == "heavy intensity rain":
+          weather_f_des_str="heavy rain"
         tempareture_str=f"{str(round(float(item['main']['temp'])))}°C"
         time_str=convert_time_to_12hr_format(time)
         combi_text=f"{(weather_f_des_str.title())}\n{tempareture_str}\n\n{time_str}"
@@ -287,6 +293,8 @@ def day_3():
     if date == target_date:
         time = item['dt_txt'].split(' ')[1]
         weather_f_des_str=(item['weather'][0]['description'])
+        if weather_f_des_str == "heavy intensity rain":
+          weather_f_des_str="heavy rain"
         tempareture_str=f"{str(round(float(item['main']['temp'])))}°C"
         time_str=convert_time_to_12hr_format(time)
         combi_text=f"{(weather_f_des_str.title())}\n{tempareture_str}\n\n{time_str}"
@@ -312,6 +320,8 @@ def day_4():
     if date == target_date:
         time = item['dt_txt'].split(' ')[1]
         weather_f_des_str=(item['weather'][0]['description'])
+        if weather_f_des_str == "heavy intensity rain":
+          weather_f_des_str="heavy rain"
         tempareture_str=f"{str(round(float(item['main']['temp'])))}°C"
         time_str=convert_time_to_12hr_format(time)
         combi_text=f"{(weather_f_des_str.title())}\n{tempareture_str}\n\n{time_str}"
@@ -338,6 +348,8 @@ def day_5():
         weather_updates_count += 1
         time = item['dt_txt'].split(' ')[1]
         weather_f_des_str=(item['weather'][0]['description'])
+        if weather_f_des_str == "heavy intensity rain":
+          weather_f_des_str="heavy rain"
         tempareture_str=f"{str(round(float(item['main']['temp'])))}°C"
         time_str=convert_time_to_12hr_format(time)
         combi_text=f"{(weather_f_des_str.title())}\n{tempareture_str}\n\n{time_str}"
@@ -381,23 +393,23 @@ button = ctk.CTkButton(root, image=search_icon_image,text="",
 button.place(x=570,y=60)
 
 # Weather Detail 
-canvas=Canvas(root,bg="#47ceff",highlightbackground="#47ceff",height=210,width=200)
-canvas.place(x=10,y=200)
+canvas=Canvas(root,bg="#47ceff",highlightbackground="#47ceff",height=180,width=165)
+canvas.place(x=10,y=150)
 
 # Created rounded rectangle
-my_rectangle = round_rectangle(4, 4, 200, 210, radius=20, fill="black")
+my_rectangle = round_rectangle(4, 4, 165, 180, radius=20, fill="black")
 
 # Weather details lables
 label1 = ctk.CTkLabel(canvas, text="Humidity:", fg_color="black",bg_color="black", text_color="white")
-label1.place(x=10,y=12)
+label1.place(x=12,y=20)
 label2 = ctk.CTkLabel(canvas, text="Wind Speed:", fg_color="black",bg_color="black", text_color="white")
-label2.place(x=10,y=42)
+label2.place(x=12,y=50)
 label3 = ctk.CTkLabel(canvas, text="AQI:", fg_color="black",bg_color="black", text_color="white")
-label3.place(x=10,y=72)
+label3.place(x=12,y=80)
 label4 = ctk.CTkLabel(canvas, text="Pressure:", fg_color="black",bg_color="black", text_color="white")
-label4.place(x=10,y=102)
+label4.place(x=12,y=110)
 label5 = ctk.CTkLabel(canvas, text="Visibility:", fg_color="black",bg_color="black", text_color="white")
-label5.place(x=10,y=132)
+label5.place(x=12,y=140)
 
 Humidity_variable = ctk.StringVar()
 Wind_Speed_variable = ctk.StringVar()
@@ -407,19 +419,19 @@ Visibility_variable = ctk.StringVar()
 
 # Weather details value lables
 t_label1 = ctk.CTkLabel(canvas, textvariable=Humidity_variable, fg_color="black",bg_color="black", text_color="white")
-t_label1.place(x=90,y=12)
+t_label1.place(x=92,y=20)
 
 t_label2 = ctk.CTkLabel(canvas, textvariable=Wind_Speed_variable, fg_color="black",bg_color="black", text_color="white")
-t_label2.place(x=90,y=42)
+t_label2.place(x=92,y=50)
 
 t_label3 = ctk.CTkLabel(canvas, textvariable=AQI_variable, fg_color="black",bg_color="black", text_color="white")
-t_label3.place(x=90,y=72)
+t_label3.place(x=92,y=80)
 
 t_label4 = ctk.CTkLabel(canvas, textvariable=Pressure_variable, fg_color="black",bg_color="black", text_color="white")
-t_label4.place(x=90,y=102)
+t_label4.place(x=92,y=110)
 
 t_label5 = ctk.CTkLabel(canvas, textvariable=Visibility_variable, fg_color="black",bg_color="black", text_color="white")
-t_label5.place(x=90,y=132)
+t_label5.place(x=92,y=140)
 
 
 # Tempareture lable
@@ -434,7 +446,7 @@ fl_temp_lable.place(x=290,y=250)
 
 # Icon label
 icon_lable = ctk.CTkLabel(root,text="",bg_color='#47ceff')
-icon_lable.place(x=510,y=160)
+icon_lable.place(x=525,y=188)
 
 # Icon lable description
 icon_lable_variable = ctk.StringVar()
@@ -455,12 +467,12 @@ date_lable.place(x=7,y=28)
 # Timezone lable
 timezone_variable = ctk.StringVar()
 timezone_lable = ctk.CTkLabel(root, textvariable=timezone_variable, text_color='#262e94', bg_color='#47ceff', font=('Arial', 25))
-timezone_lable.place(x=790,y=10)
+timezone_lable.place(x=720,y=10)
 
 
 # Canvas for weather forecast
 # scrollregion = (1eft, top, right, bottom) 
-Canvas = Canvas(root,height=200, bg="black")
+Canvas = Canvas(root,height=160, bg="black")
 Canvas.pack(expand=True, anchor='sw', fill=X)
 
 # To store labels for forecast
